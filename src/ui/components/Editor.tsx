@@ -26,8 +26,15 @@ function esc(s: string): string {
 
 // Colorea una linea token por token (aproximado, solo visual).
 function highlightLine(line: string, hasError: boolean): string {
+  const bg = hasError ? "background:rgba(229,104,122,0.10);" : "";
+  // TODA linea se envuelve en el mismo bloque de 22px para que el resaltado
+  // conserve la misma metrica vertical que el textarea (si no, el cursor cae
+  // en la linea equivocada al hacer clic).
+  const wrap = (inner: string) =>
+    `<span style="display:block;${bg}min-height:22px">${inner || "&nbsp;"}</span>`;
+
   if (line.trimStart().startsWith("#") || line.trimStart().startsWith("//")) {
-    return `<span style="color:#5A6B72">${esc(line)}</span>`;
+    return wrap(`<span style="color:#5A6B72">${esc(line)}</span>`);
   }
   // separa conservando espacios, strings, parentesis y comas
   const parts = line.match(/("[^"]*"|[(),]|[^\s(),]+|\s+)/g) ?? [];
@@ -53,8 +60,7 @@ function highlightLine(line: string, hasError: boolean): string {
     else if (/^[<>=!]+$/.test(p)) out += `<span style="color:#7C8B90">${esc(p)}</span>`;
     else out += `<span style="color:#C8D3D5">${esc(p)}</span>`;
   }
-  const bg = hasError ? "background:rgba(229,104,122,0.10);" : "";
-  return `<span style="display:block;${bg}min-height:22px">${out || "&nbsp;"}</span>`;
+  return wrap(out);
 }
 
 interface EditorProps {

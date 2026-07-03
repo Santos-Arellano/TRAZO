@@ -1,37 +1,57 @@
 // sampleData.ts
-// Un dataset de ejemplo integrado para que la app arranque mostrando algo vivo,
-// sin que tengas que cargar un archivo primero. Tema: ventas de una distribuidora
-// (guino a tus clientes tipo Grupollo). Cambialo por lo que quieras.
+// Datos de ejemplo SIMPLES y COMPLETOS: Calificaciones de estudiantes
+// Este dataset muestra claramente cómo funciona todo el proyecto.
 
-export const SAMPLE_FILENAME = "ventas_demo.csv";
+export const SAMPLE_FILENAME = "calificaciones_estudiantes.csv";
 
-export const SAMPLE_CSV = `mes,region,producto,canal,ingreso,unidades
-ene,Norte,Pollo entero,Mayoreo,124000,3100
-ene,Sur,Pollo entero,Mayoreo,98000,2450
-ene,Centro,Huevo,Menudeo,54000,9000
-feb,Norte,Pollo entero,Mayoreo,151000,3600
-feb,Sur,Huevo,Menudeo,95000,15800
-feb,Centro,Pechuga,Mayoreo,132000,2200
-mar,Norte,Huevo,Menudeo,70000,11600
-mar,Sur,Pollo entero,Mayoreo,181000,4200
-mar,Centro,Pechuga,Mayoreo,143000,2380
-abr,Norte,Pollo entero,Mayoreo,166000,3950
-abr,Sur,Huevo,Menudeo,112000,18600
-abr,Centro,Pechuga,Menudeo,88000,1460
-may,Norte,Pechuga,Mayoreo,159000,2650
-may,Sur,Pollo entero,Mayoreo,174000,4150
-may,Centro,Huevo,Menudeo,61000,10100
-jun,Norte,Pollo entero,Mayoreo,192000,4560
-jun,Sur,Pechuga,Mayoreo,148000,2470
-jun,Centro,Huevo,Menudeo,73000,12100`;
+// Datos sencillos: estudiante, materia, calificación, período, carrera
+// Fácil de entender y probar todas las funcionalidades
+export const SAMPLE_CSV = `estudiante,materia,calificacion,periodo,carrera
+Ana,Matemáticas,95,1,Ingeniería
+Ana,Física,88,1,Ingeniería
+Ana,Química,92,1,Ingeniería
+Carlos,Matemáticas,78,1,Ingeniería
+Carlos,Física,85,1,Ingeniería
+Carlos,Química,80,1,Ingeniería
+María,Matemáticas,90,1,Medicina
+María,Física,82,1,Medicina
+María,Química,96,1,Medicina
+Ana,Matemáticas,98,2,Ingeniería
+Ana,Física,91,2,Ingeniería
+Ana,Química,95,2,Ingeniería
+Carlos,Matemáticas,82,2,Ingeniería
+Carlos,Física,88,2,Ingeniería
+Carlos,Química,85,2,Ingeniería
+María,Matemáticas,92,2,Medicina
+María,Física,86,2,Medicina
+María,Química,98,2,Medicina`;
 
-export const STARTER_QUERY = `# Escribe consultas, cada linea es una grafica.
-# Prueba a cambiar cosas: la vista se actualiza sola.
+// Consulta de inicio que MUESTRA TODAS LAS FUNCIONALIDADES:
+// - KPIs (indicadores clave)
+// - Todos los tipos de gráficas (line, bar, area, scatter, pie)
+// - Todas las agregaciones (sum, avg, count, min, max)
+// - Modificadores (sort, top, where, as)
+// - Español e inglés funcionan igual!
+export const STARTER_QUERY = `# 📊 Ejemplo COMPLETO de Trazo
+# Cada línea es una gráfica o un KPI. Edítalo y ve los cambios en vivo!
+#
+# 📌 Tipos de gráficas: line, bar, area, scatter, pie
+# 📌 Agregaciones: sum(x), avg(x), count(x), min(x), max(x)
+# 📌 Modificadores: sort asc|desc, top N, where, as "Título"
+# 📌 Funciona en español e inglés!
 
-kpi sum(ingreso) as "Ingreso total"
-kpi avg(ingreso) as "Ticket promedio"
+# 🎯 KPIs (Indicadores clave)
+kpi avg(calificacion) as "Promedio general"
+kpi max(calificacion) as "Calificación máxima"
+kpi min(calificacion) as "Calificación mínima"
+kpi count(estudiante) as "Total de registros"
 
-chart line of sum(ingreso) by mes as "Ingreso por mes"
-chart bar of sum(ingreso) by region sort desc as "Ingreso por region"
-chart pie of sum(ingreso) by producto as "Mezcla de producto"
-chart bar of sum(unidades) by producto top 3 as "Top productos por volumen"`;
+# 📈 Gráficas básicas
+chart line of avg(calificacion) by periodo as "Evolución por período"
+chart bar of avg(calificacion) by materia sort desc as "Promedio por materia"
+chart pie of count(estudiante) by carrera as "Distribución por carrera"
+
+# 📊 Más gráficas
+chart bar of avg(calificacion) by estudiante as "Calificaciones por estudiante"
+chart area of avg(calificacion) by materia as "Promedio por materia (área)"
+`;

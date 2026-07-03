@@ -164,8 +164,3 @@ Ese es el pago de haber separado el motor del render desde el día uno.
 
 ---
 
-## Nota honesta
-
-Esto es un punto de partida sólido y funcional, no un producto terminado. El compilador está probado (26 casos) y la arquitectura aguanta crecimiento real. Lo que sigue —y lo que lo vuelve *tuyo*— es lo que le agregues. Empieza por hacer excelente una cosa antes de saltar a la siguiente; la tentación de brincar entre features va a ser fuerte.
-
-Y como te dije: no soy asesor de negocios. El plan de monetización abre la puerta, pero el dinero real depende de ejecutar y validar con usuarios de verdad.

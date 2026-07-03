@@ -17,6 +17,9 @@ build/
 *.swp
 *.swo
 
+# AI Assistants
+.claude/
+
 # OS
 .DS_Store
 Thumbs.db
